@@ -21,6 +21,10 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+.button.esc{
+  text-align: center;
+  font-size: 1rem;
+}
 
 .container {
   background-image: url("arquivo/fundo.png");
@@ -70,7 +74,11 @@ body {
 .tela {
   width: 90%;
   height: 5rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
   background-color: white;
+  justify-content: center;
   margin-top: 15px;
   border-radius: 10px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -114,7 +122,10 @@ body {
   background-color: var(--color5) !important;
   color: #fff;
 }
-
+ button{
+  background-color: green;
+  
+}
 footer {
   background-color: var(--color4);
   color: var(--color6);
