@@ -1,0 +1,43 @@
+name: Testes da calculadora
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - app.js
+      - index.html
+      - tests/**
+      - .github/workflows/calculadora.yml
+  pull_request:
+    paths:
+      - app.js
+      - index.html
+      - tests/**
+      - .github/workflows/calculadora.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: calculadora-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Obter código
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - name: Preparar Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Conferir sintaxe JavaScript
+        run: node --check app.js
+      - name: Verificar eventos e cálculos com DOM simulado
+        run: node --test tests/calculator.test.mjs

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     switch(value) {
       case '=':
         try {
-          display.innerText = eval(display.innerText.replace('X', '*'));
+          display.innerText = eval(display.innerText.replaceAll('X', '*'));
         } catch {
           display.innerText = 'Erro';
         }

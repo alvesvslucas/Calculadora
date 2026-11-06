@@ -31,3 +31,14 @@ Abra `index.html` em um navegador.
 
 Exercício de calculadora básica. A avaliação atual utiliza `eval`; o projeto não implementa regras próprias de precisão decimal ou tratamento específico de divisão por zero.
 
+## Testes automatizados
+
+Com Node.js 24, sem instalar dependências:
+
+```sh
+node --check app.js
+node --test tests/calculator.test.mjs
+```
+
+Os 10 casos executam o `app.js` real com DOM e eventos simulados. Cobrem multiplicações encadeadas (`2X3X4 = 24`), operações básicas, teclado/Enter, limpar, Backspace e tratamento de expressão incompleta. Não substituem a conferência visual em um navegador nem validam precisão decimal ou divisão por zero.
+
